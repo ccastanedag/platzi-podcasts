@@ -1,4 +1,5 @@
 import 'isomorphic-fetch'
+import Link from 'next/link'
 
 export default class extends React.Component {
   static async getInitialProps() {
@@ -17,10 +18,12 @@ export default class extends React.Component {
           {
             channels.map((channel) => {
               return (
-                <div className="channel">
-                  <img src={channel.urls.logo_image.original} alt={`${channel.title} icon`}/>
-                  <h2>{channel.title}</h2>
-                </div>
+                <Link href="/channel" prefetch>
+                  <a className="channel">
+                    <img src={channel.urls.logo_image.original} alt={`${channel.title} icon`} />
+                    <h2>{channel.title}</h2>
+                  </a>
+                </Link>
               )
             })
           }
@@ -41,6 +44,7 @@ export default class extends React.Component {
           }
 
           .channel {
+           display:block;
            border-radius: 3px;
            box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
            margin-bottom: 0.5em;
